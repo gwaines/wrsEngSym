@@ -1,0 +1,21 @@
+
+#
+# aBetterFirstApp
+#
+#
+
+FullName: com.wrs.aBetterFirstApp
+Type: Application
+
+Name: TEST APP - Single VM With Volume
+Description: |
+ A minimalistic Murano Package which prompts user for name of
+ application, flavor, image and an optional key pair,
+ and then creates a volume from the image, launches a VM from
+ the volume using the specified flavor and finally assigns a 
+ floating IP.
+Author: 'Greg Waines, Wind River'
+Tags: [VM, Volume]
+
+Classes:
+  com.wrs.aBetterFirstApp: aBetterFirstApp.yaml

@@ -1,0 +1,104 @@
+#  Licensed under the Apache License, Version 2.0 (the "License"); you may
+#  not use this file except in compliance with the License. You may obtain
+#  a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+#  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+#  License for the specific language governing permissions and limitations
+#  under the License.
+
+Version: 2
+
+
+
+Templates:
+  bootVolumes:
+    - volume:
+        ?:
+          type: io.murano.resources.CinderVolume
+        size: $.instanceConfiguration.volSize
+        sourceImage: $.instanceConfiguration.osImage
+      bootIndex: 0
+      deviceName: vda
+      deviceType: disk
+
+
+
+Application:
+  ?:
+    type: com.wrs.aBetterFirstApp
+
+  name: $.appConfiguration.name
+
+  instance:
+    ?:
+      type: io.murano.resources.LinuxMuranoInstance
+    name: $.appConfiguration.name
+    flavor: $.instanceConfiguration.flavor
+#   image: $.instanceConfiguration.osImage
+    blockDevices: $bootVolumes
+    keyname: $.instanceConfiguration.keyPair
+    availabilityZone: 'nova'
+    assignFloatingIp: $.appConfiguration.assignFloatingIP
+
+
+
+Forms:
+
+  - appConfiguration:
+      fields:
+
+        - name: name
+          label: Application Component Name
+          type: string
+          description: Specify name of Application Component
+          required: true
+
+        - name: assignFloatingIP
+          type: boolean
+          label: Assign Floating IP
+          description: >-
+             Select to true to assign floating IP automatically
+          initial: false
+          required: false
+          widgetMedia:
+            css: {all: ['muranodashboard/css/checkbox.css']}
+
+
+  - instanceConfiguration:
+      fields:
+
+        - name: flavor
+          label: Instance flavor
+          type: flavor
+          description: >-
+            Select from list of existing Openstack flavors. 
+          required: true
+
+        - name: osImage
+          label: Instance image
+          type: image
+          imageType: linux
+          description: >-
+            Select from a list of existing Openstack images tagged for use by 
+            Murano and of type Linux.
+          required: true
+
+        - name: volSize
+          label: Size of volume
+          type: integer
+          description: >-
+            Specify volume size which is going to be created from image.
+          required: true
+
+        - name: keyPair
+          label: Key Pair
+          type: keypair
+          description: >-
+            Select the Key Pair to control access to instances. You can login to
+            instances using this KeyPair after the deployment of application.
+          required: false
+

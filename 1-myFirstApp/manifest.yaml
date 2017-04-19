@@ -1,0 +1,17 @@
+
+#
+# myFirstApp
+#
+# A minimalistic Murano Package which prompts user for name of
+# application, flavor, image and an optional key pair,
+# and then launches a VM with these attributes, and 
+# assigns a floating IP.
+#
+
+FullName: com.wrs.myFirstApp
+
+Type: Application
+
+Classes:
+  com.wrs.myFirstApp: myFirstApp.yaml
+

@@ -1,0 +1,22 @@
+
+#
+# fullApp
+#
+#
+
+Format: 1.0
+
+FullName: com.wrs.fullApp
+Type: Application
+
+Name: TEST APP - VM with Install and Configuration
+Description: |
+ A full Murano Package which launches the
+ Ubuntu Cloud Image and then does installation and
+ configuration of some applications.
+ 
+Author: 'Greg Waines, Wind River'
+Tags: [VM, Volume, Install, Configuration]
+
+Classes:
+  com.wrs.fullApp: fullApp.yaml

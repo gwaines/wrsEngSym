@@ -1,0 +1,19 @@
+
+# 
+# NOTE: this is currently improperly named because
+#       functionality to check these images seems
+#       broken on the CUMULUS Mitaka-version of 
+#       Murano
+# 
+
+Images:
+
+- Name: 'trusty-server-cloudimg-amd64-disk1.img'
+  Hash: '4bfe1567d14c93fbbb8ced6ba5541694'
+  Meta:
+    title: 'Ubuntu 14.04 Cloud Image'
+    type: 'linux'
+  DiskFormat: qcow2
+  ContainerFormat: bare
+# Url: 'http://murano-files.wrs.com/trusty-server-cloudimg-amd64-disk1.img'
+

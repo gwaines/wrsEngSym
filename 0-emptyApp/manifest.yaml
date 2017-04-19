@@ -1,0 +1,15 @@
+
+#
+# emptyApp
+#
+# A minimalistic Murano Package which prompts user for name of
+# application ... and then on deply simply writes a HELLO WORLD 
+# Murano log message.
+#
+
+FullName: com.wrs.emptyApp
+Type: Application
+
+Classes:
+  com.wrs.emptyApp: emptyApp.yaml
+
